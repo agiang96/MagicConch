@@ -946,7 +946,6 @@ GameObject:
   - component: {fileID: 672185307}
   - component: {fileID: 672185306}
   - component: {fileID: 672185305}
-  - component: {fileID: 672185304}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -973,17 +972,6 @@ RectTransform:
   m_AnchoredPosition: {x: 200, y: -177.8948}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &672185304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 672185302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2d50ff921a7d824ba3927791ea4cb76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &672185305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1211,7 +1199,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 743263773}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b37bce5de1388844fb78929294b614ca, type: 3}
+  m_Script: {fileID: 11500000, guid: e3d7348a7e6ef704797511b73a9aa224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &897753317
@@ -1345,7 +1333,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 897753317}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2d50ff921a7d824ba3927791ea4cb76, type: 3}
+  m_Script: {fileID: 11500000, guid: 91205324f4b1e794b9e03c145d5175a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1165464422
@@ -1597,7 +1585,6 @@ GameObject:
   - component: {fileID: 1549432581}
   - component: {fileID: 1549432580}
   - component: {fileID: 1549432579}
-  - component: {fileID: 1549432578}
   m_Layer: 5
   m_Name: HowToPlayButton
   m_TagString: Untagged
@@ -1624,17 +1611,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1549432578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1549432576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2d50ff921a7d824ba3927791ea4cb76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1549432579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1925,7 +1901,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1922806968}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72239a021f3df7e40b0df4d4926a9a1e, type: 3}
+  m_Script: {fileID: 11500000, guid: 02acc14dac8a4b04390b70a15c77ce23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1922806971
@@ -2318,7 +2294,6 @@ GameObject:
   - component: {fileID: 2050539081}
   - component: {fileID: 2050539080}
   - component: {fileID: 2050539079}
-  - component: {fileID: 2050539078}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -2345,17 +2320,6 @@ RectTransform:
   m_AnchoredPosition: {x: 200, y: -172.8948}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2050539078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2050539076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2d50ff921a7d824ba3927791ea4cb76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2050539079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2463,7 +2427,6 @@ GameObject:
   - component: {fileID: 2052413549}
   - component: {fileID: 2052413548}
   - component: {fileID: 2052413547}
-  - component: {fileID: 2052413546}
   m_Layer: 5
   m_Name: CreditsButton
   m_TagString: Untagged
@@ -2490,17 +2453,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2052413546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2052413544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2d50ff921a7d824ba3927791ea4cb76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2052413547
 MonoBehaviour:
   m_ObjectHideFlags: 0
