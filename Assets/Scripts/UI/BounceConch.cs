@@ -7,7 +7,7 @@ public class BounceConch : MonoBehaviour {
     //adjust this to change speed
     float speed = 3f;
     //adjust this to change how high it goes
-    float height = 0.5f;
+    float height = 0.4f;
 
    
 

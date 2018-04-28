@@ -5,9 +5,10 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Server : MonoBehaviour {
-
+    
     private List<ServerClient> clients;
     private List<ServerClient> disconnectList; //keeps track of disconnects
 
@@ -27,6 +28,7 @@ public class Server : MonoBehaviour {
 
             StartListening();
             serverStarted = true;
+            Debug.Log("Server has been started on port " + port.ToString());
         }
         catch (Exception e)
         {
@@ -34,13 +36,16 @@ public class Server : MonoBehaviour {
         }
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (!serverStarted)
             return;
 
         foreach (ServerClient c in clients)
         {
+            if (!serverStarted)
+                return; 
+
             //is the client still connected?
             if (!IsConnected(c.tcp))
             {
@@ -62,13 +67,19 @@ public class Server : MonoBehaviour {
                 }
             }
         }
+
+        for (int i = 0; i < disconnectList.Count - 1; i++)
+        {
+            Broadcast(disconnectList[i].clientName + " has disconnected", clients);
+            clients.Remove(disconnectList[i]);
+            disconnectList.RemoveAt(i);
+        }
     }
 
-    private void OnIncomingData(ServerClient c, string data)
+    private void StartListening()
     {
-        Debug.Log(c.clientName + " has sent the following message: " + data);
+        server.BeginAcceptTcpClient(AcceptTcpClient, server);
     }
-
     private bool IsConnected(TcpClient c)
     {
         try
@@ -89,12 +100,6 @@ public class Server : MonoBehaviour {
             return false;
         }
     }
-
-    private void StartListening()
-    {
-        server.BeginAcceptTcpClient(AcceptTcpClient, server);
-    }
-
     private void AcceptTcpClient(IAsyncResult ar)
     {
         TcpListener listener = (TcpListener)ar.AsyncState;
@@ -103,11 +108,33 @@ public class Server : MonoBehaviour {
         StartListening();
 
         // Send a message to everyone, say someone has connected
+        Broadcast(clients[clients.Count - 1].clientName + " has connected", clients);
+    }
+    private void OnIncomingData(ServerClient c, string data)
+    {
+        Broadcast(c.clientName + ": " + data, clients);
+    }
+    private void Broadcast(string data, List<ServerClient> cl)
+    {
+        foreach (ServerClient c in cl)
+        {
+            try
+            {
+                StreamWriter writer = new StreamWriter(c.tcp.GetStream());
+                writer.WriteLine(data);
+                writer.Flush();
+            }
+            catch(Exception e)
+            {
+                Debug.Log("Write error: " + e.Message + " to client " + c.clientName);
+            }
+        }
     }
 
+    
 } // end of Server : Monobehavior
 
-//simple definition of serverclient
+//simple definition of client for server
 public class ServerClient
 {
     public TcpClient tcp;
