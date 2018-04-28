@@ -138,7 +138,8 @@ public class Server : MonoBehaviour {
         || prompt.Contains("would")
         || prompt.Contains("shall")
         || prompt.Contains("do")
-        || prompt.Contains("does"))
+        || prompt.Contains("does")
+        || prompt.Contains("am"))
         {
             toClient = GoodInput();
         }
