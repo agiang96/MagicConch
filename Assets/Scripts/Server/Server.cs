@@ -148,7 +148,18 @@ public class Server : MonoBehaviour {
         {
             toClient = BadInput();
         }
-        Broadcast(toClient, clients);
+
+        //output to the client
+        try
+        {
+            StreamWriter writer = new StreamWriter(c.tcp.GetStream());
+            writer.WriteLine(toClient);
+            writer.Flush();
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Write error: " + e.Message + " to client " + c.clientName);
+        }
     }
 
     private string GoodInput()
