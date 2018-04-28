@@ -114,32 +114,32 @@ public class Server : MonoBehaviour {
         prompt = prompt.ToLower();
 
         //Testing for "Or" clause,(highest precedence)
-        if (prompt.Contains("or"))
+        if (prompt.Contains(" or "))
         {
             toClient = OrInput();
         }
 
         //Test for unclear inputs (expecting sentence of the form "why should ...")
-        else if (prompt.Contains("why")
-        || prompt.Contains("where")
-        || prompt.Contains("what")
-        || prompt.Contains("when")
-        || prompt.Contains("who")
-        || prompt.Contains("how"))
+        else if (prompt.Contains("why ")
+        || prompt.Contains("where ")
+        || prompt.Contains("what ")
+        || prompt.Contains("when ")
+        || prompt.Contains("who ")
+        || prompt.Contains("how "))
         {
             toClient = UnclearInput(prompt);
         }
 
         //Testing for good questions. (If were here we have a prompt like "Can I have ...")
-        else if (prompt.Contains("can")
-        || prompt.Contains("will")
-        || prompt.Contains("should")
-        || prompt.Contains("is")
-        || prompt.Contains("would")
-        || prompt.Contains("shall")
-        || prompt.Contains("do")
-        || prompt.Contains("does")
-        || prompt.Contains("am"))
+        else if (prompt.Contains("can ")
+        || prompt.Contains("will ")
+        || prompt.Contains("should ")
+        || prompt.Contains("is ")
+        || prompt.Contains("would ")
+        || prompt.Contains("shall ")
+        || prompt.Contains("do ")
+        || prompt.Contains("does ")
+        || prompt.Contains("am "))
         {
             toClient = GoodInput();
         }
