@@ -55,6 +55,7 @@ public class Client : MonoBehaviour {
         catch (Exception e)
         {
             Debug.Log("Socket error: " + e.Message);
+            conchMessage.text = "Couldn't connect to server, sorry. Please try again later";
         }
     }
 
@@ -111,4 +112,9 @@ public class Client : MonoBehaviour {
     {
         CloseSocket();
     }
+    public void OnSceneChange()
+    {
+        CloseSocket();
+    }
+
 }
