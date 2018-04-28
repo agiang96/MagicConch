@@ -15,6 +15,7 @@ public class Server : MonoBehaviour {
     public int port = 6321;
     private TcpListener server;
     private bool serverStarted;
+    private string toClient;
 
     private void Start()
     {
@@ -106,14 +107,198 @@ public class Server : MonoBehaviour {
 
         clients.Add(new ServerClient(listener.EndAcceptTcpClient(ar)));
         StartListening();
-
-        // Send a message to everyone, say someone has connected
-        Broadcast(clients[clients.Count - 1].clientName + " has connected", clients);
     }
     private void OnIncomingData(ServerClient c, string data)
     {
-        Broadcast(c.clientName + ": " + data, clients);
+        string prompt = data;
+        prompt = prompt.ToLower();
+
+        //Testing for "Or" clause,(highest precedence)
+        if (prompt.Contains("or"))
+        {
+            toClient = OrInput();
+        }
+
+        //Test for unclear inputs (expecting sentence of the form "why should ...")
+        else if (prompt.Contains("why")
+        || prompt.Contains("where")
+        || prompt.Contains("what")
+        || prompt.Contains("when")
+        || prompt.Contains("who")
+        || prompt.Contains("how"))
+        {
+            toClient = UnclearInput(prompt);
+        }
+
+        //Testing for good questions. (If were here we have a prompt like "Can I have ...")
+        else if (prompt.Contains("can")
+        || prompt.Contains("will")
+        || prompt.Contains("should")
+        || prompt.Contains("is")
+        || prompt.Contains("would")
+        || prompt.Contains("shall")
+        || prompt.Contains("do")
+        || prompt.Contains("does"))
+        {
+            toClient = GoodInput();
+        }
+
+        //If I forgot anything
+        else
+        {
+            toClient = BadInput();
+        }
+        Broadcast(toClient, clients);
     }
+
+    private string GoodInput()
+    {
+        System.Random rnd = new System.Random();
+        int OutputSelect = rnd.Next(1, 15);
+        //Console.WriteLine(OutputSelect); //debugging line
+        if (OutputSelect == 1)
+        {
+            return "It's happening!";
+        }
+        if (OutputSelect == 2)
+        {
+            return "It is absolutely so";
+        }
+        if (OutputSelect == 3)
+        {
+            return "There is no doubt";
+        }
+        if (OutputSelect == 4)
+        {
+            return "You may rely on it";
+        }
+        if (OutputSelect == 5)
+        {
+            return "As the conch sees it, yes";
+        }
+        if (OutputSelect == 6)
+        {
+            return "Extremely likely";
+        }
+        if (OutputSelect == 7)
+        {
+            return "Outlook looking good";
+        }
+        if (OutputSelect == 8)
+        {
+            return "Yes";
+        }
+        if (OutputSelect == 9)
+        {
+            return "All evidence says yes";
+        }
+        if (OutputSelect == 10)
+        {
+            return "Don't bet any money on it";
+        }
+        if (OutputSelect == 11)
+        {
+            return "I don't think so";
+        }
+        if (OutputSelect == 12)
+        {
+            return "A little birdie told me no";
+        }
+        if (OutputSelect == 13)
+        {
+            return "Outlook not so good";
+        }
+        if (OutputSelect == 14)
+        {
+            return "Very doubtful";
+        }
+        return "";
+    }
+    private string BadInput()
+    {
+        System.Random rnd = new System.Random();
+        int OutputSelect = rnd.Next(1, 6);
+        //Console.WriteLine(OutputSelect); //debugging line
+        if (OutputSelect == 1)
+        {
+            return "Instructions unclear, conch self destructed";
+        }
+        if (OutputSelect == 2)
+        {
+            return "Maybe ask again later?";
+        }
+        if (OutputSelect == 3)
+        {
+            return "I'm not gonna tell you";
+        }
+        if (OutputSelect == 4)
+        {
+            return "Impossible to say";
+        }
+        if (OutputSelect == 5)
+        {
+            return "Come back with a better question";
+        }
+        return "Try again later";
+    }
+    private string UnclearInput(string prompt)
+    {
+        System.Random rnd = new System.Random();
+        int OutputSelect = rnd.Next(1, 5);//50% chance of complaining and 50% chance to give unique response
+                                          //Console.WriteLine(OutputSelect); //debugging line
+        if ((OutputSelect == 1) || (OutputSelect == 2))
+        {
+            if (prompt.Contains("who"))
+            {
+                return "I can't figure out who";
+            }
+            else if (prompt.Contains("what"))
+            {
+                return "I don't know what that is";
+            }
+            else if (prompt.Contains("when"))
+            {
+                return "Which timeline are we in right now?";
+            }
+            else if (prompt.Contains("where"))
+            {
+                return "Somewhere in the universe";
+            }
+            else if (prompt.Contains("why"))
+            {
+                return "I don't know why";
+            }
+            else if (prompt.Contains("how"))
+            {
+                return "How would I know?";
+            }
+        }
+        if ((OutputSelect == 3) || (OutputSelect == 4))
+        {
+            toClient = BadInput();
+        }
+        return "Please try again.";
+    }
+    private string OrInput()
+    {
+        System.Random rnd = new System.Random();
+        int OutputSelect = rnd.Next(1, 4);
+        //Console.WriteLine(OutputSelect); //debugging line
+        if (OutputSelect == 1)
+        {
+            return "Go left";
+        }
+        if (OutputSelect == 2)
+        {
+            return "Trust your feelings";
+        }
+        if (OutputSelect == 3)
+        {
+            return "Go right";
+        }
+        return "Please Ask Again";
+    }
+
     private void Broadcast(string data, List<ServerClient> cl)
     {
         foreach (ServerClient c in cl)

@@ -73,8 +73,8 @@ public class Client : MonoBehaviour {
 
     private void OnIncomingData(string data)
     {
-        Debug.Log("Server: " + data);  
-
+        Debug.Log("Server: " + data);
+        conchMessage.text = data;
     }
 
     private void Send(string data)
@@ -86,7 +86,7 @@ public class Client : MonoBehaviour {
         writer.Flush();
     }
 
-    private void OnSendButton()
+    public void OnSendButton()
     {
         string message = GameObject.Find("UserInput").GetComponent<InputField>().text;
         Send(message);
