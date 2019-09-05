@@ -21,9 +21,9 @@ https://docs.google.com/presentation/d/17SvslkBSBQQXUqdRRoFbXkfSutPFa9r84rKkYmvQ
 --------------------------------------------------------------------------------
 Title Screen
 --------------------------------------------------------------------------------
-![alt text](https://github.com/agiang96/MagicConch)
+![alt text](https://github.com/agiang96/MagicConch/blob/master/TitleScreen.JPG)
 --------------------------------------------------------------------------------
 Gameplay
 --------------------------------------------------------------------------------
-![alt text](https://github.com/agiang96/MagicConch)
+![alt text](https://github.com/agiang96/MagicConch/blob/master/Gameplay.JPG)
 --------------------------------------------------------------------------------
